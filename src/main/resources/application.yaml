@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: FinalProject
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/FinalProject
+    username: postgres
+    password: 2611
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8081
