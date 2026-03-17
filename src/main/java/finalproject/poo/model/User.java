@@ -1,4 +1,4 @@
-package finalproject.poo;
+package finalproject.poo.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
