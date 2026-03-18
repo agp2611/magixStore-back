@@ -30,5 +30,5 @@ public abstract class User {
     @JsonIgnore
     private String password;
 
-    public boolean isAdmin() {};
+    public abstract boolean isAdmin();
 }
