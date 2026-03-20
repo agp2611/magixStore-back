@@ -13,4 +13,16 @@ public class GlobalExceptionHandler {
     public String HandlerProductNotFound(ProductNotFoundException ex){
         return ex.getMessage();
     }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String HandlerUserNotFound(UserNotFoundException ex){
+        return ex.getMessage();
+    }
+
+    @ExceptionHandler(CartItemNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String HandlerCartItemNotFound(CartItemNotFoundException ex){
+        return ex.getMessage();
+    }
 }
