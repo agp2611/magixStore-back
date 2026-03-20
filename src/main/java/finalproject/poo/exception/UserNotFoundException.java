@@ -1,7 +1,7 @@
 package finalproject.poo.exception;
 
 public class UserNotFoundException extends RuntimeException {
-    public UserNotFoundException(String message) {
+    public UserNotFoundException() {
         super("User not found");
     }
 }
