@@ -20,7 +20,7 @@ public class Cart {
     private Long id;
 
     @ManyToOne
-    private User user;
+    private Client client;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     @Builder.Default

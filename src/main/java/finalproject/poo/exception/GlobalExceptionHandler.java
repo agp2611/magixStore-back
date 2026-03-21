@@ -25,4 +25,10 @@ public class GlobalExceptionHandler {
     public String HandlerCartItemNotFound(CartItemNotFoundException ex){
         return ex.getMessage();
     }
+
+    @ExceptionHandler(OrderNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String HandlerOrderNotFound(OrderNotFoundException ex){
+        return ex.getMessage();
+    }
 }
