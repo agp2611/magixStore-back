@@ -22,7 +22,7 @@ public class Order {
     private Long id;
 
     @ManyToOne
-    private User user;
+    private Client client;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items = new ArrayList<>();
