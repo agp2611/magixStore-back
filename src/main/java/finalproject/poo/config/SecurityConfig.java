@@ -13,14 +13,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity // Essencial para o @PreAuthorize funcionar lá no ProductController!
-@RequiredArgsConstructor // O Lombok vai injetar o nosso filtro automaticamente
+@EnableMethodSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-    // Injetamos o 'segurança' que criamos no passo anterior
     private final SecurityFilter securityFilter;
 
     @Bean
@@ -32,25 +37,33 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                // 1. Avisa ao Spring que não vamos usar sessão, vamos usar Token (Stateless)
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // 2. Mantém o seu Swagger livre para qualquer um acessar
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-
-                        // 3. Libera as rotas de login/cadastro e a rota de erros (pra não mascarar bugs)
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/error").permitAll()
-
-                        // 4. Libera apenas a vitrine (GET) da loja Magix
                         .requestMatchers(HttpMethod.GET, "/products/**").permitAll()
-
-                        // 5. Tranca todas as outras portas!
                         .anyRequest().authenticated()
                 )
-                // 6. Coloca o nosso filtro para rodar ANTES do Spring tentar bloquear a requisição
+
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }
