@@ -1,4 +1,6 @@
 package finalproject.poo.dto;
 
-public record LoginRequestDto(String email, String password) {
-}
+public record LoginRequestDto(
+        String email,
+        String password
+) {}
