@@ -31,4 +31,17 @@ public class GlobalExceptionHandler {
     public String HandlerOrderNotFound(OrderNotFoundException ex){
         return ex.getMessage();
     }
+
+    @ExceptionHandler(InvalidPasswordException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public String HandlerInvalidPassword(InvalidPasswordException ex){
+        return ex.getMessage();
+    }
+
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String HandlerEmailAlreadyExists(EmailAlreadyExistsException ex){
+        return ex.getMessage();
+    }
+
 }
