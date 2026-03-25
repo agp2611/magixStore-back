@@ -14,6 +14,7 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final TokenService tokenService;
 
     public LoginResponseDto login(LoginRequestDto loginRequest) {
         User user = userRepository.findByEmail(loginRequest.email()).orElseThrow(() -> new UserNotFoundException());
@@ -22,7 +23,9 @@ public class AuthService {
             throw new InvalidPasswordException();
         }
 
-        return new LoginResponseDto(user.getId(), user.getName(), user.isAdmin());
+        String token = tokenService.generateToken(user);
+
+        return new LoginResponseDto(user.getId(), user.getName(), user.isAdmin(), token);
     }
 
     public void register(RegisterRequestDto registerRequest) {
