@@ -7,19 +7,19 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/cart")
 @RequiredArgsConstructor
 public class CartController {
 
     private final CartService cartService;
 
-    @PostMapping("/add")
-    public Cart addProduct(@PathVariable Long clientId, @PathVariable Long productId) {
+    @PostMapping("/{clientId}/add/{productId}")
+    public synchronized Cart addProduct(@PathVariable Long clientId, @PathVariable Long productId) {
         return cartService.addProductToCart(clientId, productId);
     }
 
-    @GetMapping
-    public Cart getCart(@PathVariable Long clientId) {
+    @GetMapping("/{clientId}")
+    public synchronized Cart getCart(@PathVariable Long clientId) {
         return cartService.getOrCreateCart(clientId);
     }
 
@@ -38,7 +38,7 @@ public class CartController {
         cartService.removeProductFromCart(cartItemId);
     }
 
-    @DeleteMapping("/clear")
+    @DeleteMapping("/clear/{clientId}")
     public void clearCart(@PathVariable Long clientId){
         cartService.clearCart(clientId);
     }

@@ -27,6 +27,7 @@ public class TokenService {
             return JWT.create()
                     .withIssuer("magix-api")
                     .withSubject(user.getEmail())
+                    .withClaim("id", user.getId())
                     .withClaim("role", role)
                     .withExpiresAt(genExpirationDate())
                     .sign(algorithm);

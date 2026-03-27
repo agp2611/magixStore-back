@@ -3,6 +3,7 @@ package finalproject.poo.service;
 import finalproject.poo.exception.*;
 import finalproject.poo.model.*;
 import finalproject.poo.repository.*;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,16 +17,19 @@ public class CartService {
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
     private final CartItemRepository cartItemRepository;
+    private final EntityManager entityManager;
 
+    @Transactional
     public Cart getOrCreateCart(Long clientId) {
         return cartRepository.findByClientId(clientId).orElseGet(() -> {
-            Client client = (Client) userRepository.findById(clientId)
+            var client = (Client) userRepository.findById(clientId)
                     .orElseThrow(() -> new UserNotFoundException());
 
             Cart cart = new Cart();
-            cart.setId(clientId);
+            cart.setClient(client);
+            entityManager.persist(cart);
 
-            return cartRepository.save(cart);
+            return cart;
         });
 
     }
