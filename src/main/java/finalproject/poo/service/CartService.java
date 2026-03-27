@@ -46,7 +46,7 @@ public class CartService {
         CartItem item = cartItemRepository.findByCartAndProduct(cart, product).orElse(null);
 
         if(item != null) {
-            if(item.getQuantity() > product.getStock()) {
+            if(item.getQuantity() >= product.getStock()) {
                 throw new RuntimeException(("Estoque insuficiente"));
             }
             item.setQuantity(item.getQuantity() + 1);
@@ -88,8 +88,9 @@ public class CartService {
     public void decreaseQuantity(Long cartItemId) {
         CartItem item =  cartItemRepository.findById(cartItemId).orElseThrow(() -> new CartItemNotFoundException());
 
-        if(item.getQuantity() < 1) {
+        if(item.getQuantity() > 1) {
             item.setQuantity(item.getQuantity() - 1);
+            cartItemRepository.save(item);
         } else {
             cartItemRepository.deleteById(cartItemId);
         }
