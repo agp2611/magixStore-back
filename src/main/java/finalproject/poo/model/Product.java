@@ -32,4 +32,7 @@ public class Product {
 
     @Column(nullable = true)
     private String imageUrl;
+
+    @Column(columnDefinition = "boolean default true")
+    private Boolean active = true;
 }

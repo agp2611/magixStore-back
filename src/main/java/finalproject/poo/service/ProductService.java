@@ -19,7 +19,7 @@ public class ProductService {
     }
 
     public List<Product> findAll(){
-            return productRepository.findAll();
+        return productRepository.findByActiveTrue();
     }
 
     public Product findById(Long id){
@@ -39,6 +39,10 @@ public class ProductService {
     }
 
     public void delete(Long id) {
-        productRepository.deleteById(id);
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException());
+
+        product.setActive(false);
+        productRepository.save(product);
     }
 }
