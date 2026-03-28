@@ -1,5 +1,6 @@
 package finalproject.poo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Order {
     private Long id;
 
     @ManyToOne
+    @JsonIgnore
     private Client client;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)

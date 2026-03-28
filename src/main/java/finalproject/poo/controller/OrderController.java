@@ -15,12 +15,12 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @PostMapping("/checkout")
+    @PostMapping("/checkout/{clientId}")
     public Order checkout(@PathVariable Long clientId) {
         return orderService.checkout(clientId);
     }
 
-    @GetMapping
+    @GetMapping("/client/{clientId}")
     public List<Order> getOrders(@PathVariable Long clientId) {
         return orderService.findByClientId(clientId);
     }

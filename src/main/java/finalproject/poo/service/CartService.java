@@ -3,6 +3,7 @@ package finalproject.poo.service;
 import finalproject.poo.exception.*;
 import finalproject.poo.model.*;
 import finalproject.poo.repository.*;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,16 +17,19 @@ public class CartService {
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
     private final CartItemRepository cartItemRepository;
+    private final EntityManager entityManager;
 
+    @Transactional
     public Cart getOrCreateCart(Long clientId) {
         return cartRepository.findByClientId(clientId).orElseGet(() -> {
-            Client client = (Client) userRepository.findById(clientId)
+            var client = (Client) userRepository.findById(clientId)
                     .orElseThrow(() -> new UserNotFoundException());
 
             Cart cart = new Cart();
-            cart.setId(clientId);
+            cart.setClient(client);
+            entityManager.persist(cart);
 
-            return cartRepository.save(cart);
+            return cart;
         });
 
     }
@@ -42,7 +46,7 @@ public class CartService {
         CartItem item = cartItemRepository.findByCartAndProduct(cart, product).orElse(null);
 
         if(item != null) {
-            if(item.getQuantity() > product.getStock()) {
+            if(item.getQuantity() >= product.getStock()) {
                 throw new RuntimeException(("Estoque insuficiente"));
             }
             item.setQuantity(item.getQuantity() + 1);
@@ -84,8 +88,9 @@ public class CartService {
     public void decreaseQuantity(Long cartItemId) {
         CartItem item =  cartItemRepository.findById(cartItemId).orElseThrow(() -> new CartItemNotFoundException());
 
-        if(item.getQuantity() < 1) {
+        if(item.getQuantity() > 1) {
             item.setQuantity(item.getQuantity() - 1);
+            cartItemRepository.save(item);
         } else {
             cartItemRepository.deleteById(cartItemId);
         }

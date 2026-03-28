@@ -3,6 +3,7 @@ package finalproject.poo.service;
 import finalproject.poo.exception.*;
 import finalproject.poo.model.*;
 import finalproject.poo.repository.*;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ public class OrderService {
         return orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException());
     }
 
+    @Transactional
     public Order checkout(Long clientId) {
         Cart cart = cartRepository.findByClientId(clientId).orElseThrow(() -> new UserNotFoundException());
 
@@ -68,7 +70,9 @@ public class OrderService {
 
         order.setTotal(total);
         Order savedOrder = orderRepository.save(order);
-        cartItemRepository.deleteByCart(cart);
+        cartItemRepository.deleteAll(cart.getItems());
+        cart.getItems().clear();
+        cartRepository.save(cart);
         return savedOrder;
     }
 

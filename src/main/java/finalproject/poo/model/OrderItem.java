@@ -1,6 +1,7 @@
 package finalproject.poo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class OrderItem {
     private Integer id;
 
     @ManyToOne
+    @JsonIgnore
     private Order order;
 
     @ManyToOne
