@@ -21,7 +21,7 @@ public class Product {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = true, length = 150)
+    @Column(nullable = true, length = 250)
     private String description;
 
     @Column(nullable = false)
@@ -30,7 +30,7 @@ public class Product {
     @Column(nullable = false)
     private Integer stock;
 
-    @Column(nullable = true)
+    @Column(nullable = true, length = 800)
     private String imageUrl;
 
     @Column(columnDefinition = "boolean default true")
