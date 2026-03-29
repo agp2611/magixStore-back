@@ -1,5 +1,5 @@
 
-  <h1 align="center"> Relatório do Projeto Final:</h1>
+  <h1 align="center"> Relatório do Projeto Final</h1>
 
 
 * **Título do projeto**: MagixStore
