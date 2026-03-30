@@ -3,7 +3,7 @@ spring:
     name: FinalProject
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/FinalProject
+    url: jdbc:postgresql://localhost:5432/magix_store
     username: postgres
     password: 2611
 
