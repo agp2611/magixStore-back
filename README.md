@@ -162,7 +162,7 @@ Para isso, é necessário ter **instalado**:
    ./mvnw spring-boot:run
 A API estará disponível em `http://localhost:8081`
 
-### Rodando o [Front-end](github.com/agp2611/magixStore-front)
+### Rodando o [Front-end](http://github.com/agp2611/magixStore-front)
 
 1. Clone o repositório do front-end:
    ```bash
