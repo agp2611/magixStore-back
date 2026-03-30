@@ -25,6 +25,7 @@ public class Cart {
     private Client client;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @OrderBy("id ASC")
     @Builder.Default
     private List<CartItem> items = new ArrayList<>();
 }
