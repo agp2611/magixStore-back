@@ -1,5 +1,5 @@
 
-  <h1 align="center"> Relatório do Projeto Final:</h1>
+  <h1 align="center"> Relatório do Projeto Final</h1>
 
 
 * **Título do projeto**: MagixStore
@@ -191,7 +191,3 @@ Ou se quiser gerar outro administrador, mude diretamente no banco a role de um c
 Ao final foi possível alcançar o objetivo inicial com um CRUD 100% funcional e a lógica funcionando exatamente como o esperado em uma longa jornada de aprendizado. Foi possível absorver ainda mais sobre o conceito de orientação a objetos trabalhando de perto com um projeto real, além da experiência com ferramentas do mercado como o Spring e API Rest. Ao longo do desenvolvimento surgiram algumas dúvidas, alguns bugs, alguns erros lógicos e, sem dúvidas, foram eles que trouxeram o verdadeiro conhecimento. Além de tudo foi gratificante ver o primeiro projeto tomar vida conforme os dias se passaram e, ao fim, ver ele funcionando exatamente como o esperado, onde somente administradores conseguem acessar suas devidas funções, as informações do usuário são tratadas e armazenadas com segurança no banco, um cliente consegue comprar produtos que estejam disponíveis e com estoque, e, a cada compra, o pedido ficar salvo e o estoque do produto diminui. A maior dificuldade foi, de fato, com o frontend que nunca havia tido contato, foi um verdadeiro desafio, mas que deu tudo certo.
 
 A experiência com a disciplina foi excelente, foi possível absorver tudo que era necessário da linguagem Java tanto com as aulas quanto ao decorrer do desenvolvimento do projeto final e, principalmente, os conceitos de orientação a objetos que, no início, eram bem rasos e agora estão bem consolidados. 
-
-
-
-
