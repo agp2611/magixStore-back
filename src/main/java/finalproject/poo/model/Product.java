@@ -21,7 +21,7 @@ public class Product {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = true, length = 250)
+    @Column(nullable = true, length = 500)
     private String description;
 
     @Column(nullable = false)
