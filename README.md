@@ -9,8 +9,22 @@
 * **Professor**: Gabriel Belarmino
 
 ---
+### Tópicos
 
-### Introdução:
+* [Introdução](#introdução)
+* [Modelagem](#modelagem)
+* [Ferramentas utilizadas](#ferramentas-utilizadas)
+* [Estrutura dos pacotes](#estrutura-dos-pacotes)
+* [Tutorial para rodar o projeto](#como-rodar-o-projeto-localmente)
+   * [Preparando o banco](#1-preparando-o-banco-de-dados)
+   * [Rodando o back](#2-rodando-o-back-end-spring-boot)
+   * [Rodando o front](#3-rodando-o-front-end)
+   * [Credenciais de admnistrador](#credenciais-de-acessogeradas-automaticamente)  
+* [Resultados e considerações](#3-rodando-o-front-end)
+
+---
+
+### Introdução
 
 A plataforma trata-se de um sistema de **e-commerce**, onde a experiência se divide em **duas**:
 
@@ -20,8 +34,6 @@ A plataforma trata-se de um sistema de **e-commerce**, onde a experiência se di
 O **cliente** pode acessar o site, **visualizar** os produtos que estão disponíveis, fazer seu **cadastro** ou realizar **login**(caso já possua uma conta), **adicionar itens** no carrinho e **realizar compras**, que ficam salvas em um **histórico** de pedidos de cada cliente.
 
 No caso do **administrador**, um acesso diferente surge assim que ele faz login na plataforma, **o painel de administração**. Nesse painel o administrador consegue ter total controle dos produtos que estão disponíveis para a venda. Ele pode **gerar** novos produtos, **editar** os que já existem e **deletar** quando necessário.
-
-Em resumo, a plataforma é, basicamente, um simples **CRUD**.
 
 ---
 
@@ -132,7 +144,9 @@ No [**front**](https://github.com/agp2611/magixStore-front):
 * Application.java
 ---
 
-<h1 align="center"> Como excutar o projeto localmente</h1>
+
+# Como rodar o projeto localmente
+
 
 Para isso, é necessário ter **instalado**:
 * **Java 21**(ou superior)
@@ -162,7 +176,7 @@ Para isso, é necessário ter **instalado**:
    ./mvnw spring-boot:run
 A API estará disponível em `http://localhost:8081`
 
-### Rodando o [Front-end](http://github.com/agp2611/magixStore-front)
+### 3. Rodando o [Front-end](http://github.com/agp2611/magixStore-front)
 
 1. Clone o repositório do front-end:
    ```bash
