@@ -154,7 +154,7 @@ Para isso, é necessário ter **instalado**:
 * **Node.js**
 
 ### 1. Preparando o banco de dados
-* Abra o seu SGBD (pgAdmin, DBeaver, etc.) e crie um banco de dados vazio chamado `magixstore`.
+* Abra o seu SGBD (pgAdmin, DBeaver, etc.) e crie um banco de dados vazio chamado `magix_store`.
 * O projeto está configurado com um arquivo `data.sql` que, ao iniciar o back-end pela primeira vez, criará automaticamente todas as tabelas e povoará a vitrine com 36 produtos e um usuário Administrador padrão.
 
 ### 2. Rodando o Back-end (Spring Boot)
